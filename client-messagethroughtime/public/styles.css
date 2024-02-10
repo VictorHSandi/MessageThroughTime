@@ -2,4 +2,5 @@ body {
     background-color: #000000; /* Black background */
     color: #01bd01; /* Green text color */
     font-family: "Audiowide", sans-serif; /* Use Audiowide font */
+    text-align: center;
 }
