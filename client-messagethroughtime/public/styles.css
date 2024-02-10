@@ -1,17 +1,5 @@
-.terminal {
-    background-color: #000;
-    color: #00FF00;
-    font-family: "Audiowide", sans-serif;
-    font-size: 14px;
-    padding: 20px;
-    box-shadow: inset 0 0 50px #00FF00;
-    overflow: auto;
-    width: 80%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.terminal pre {
-    margin: 0;
-    white-space: pre-wrap;
+body {
+    background-color: #0000; /* Black background */
+    color: #00FF00; /* Green text color */
+    font-family: "Audiowide", sans-serif; /* Use Audiowide font */
 }
