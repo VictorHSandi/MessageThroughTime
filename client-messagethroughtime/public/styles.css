@@ -3,4 +3,16 @@ body {
     color: #01bd01; /* Green text color */
     font-family: "Audiowide", sans-serif; /* Use Audiowide font */
     text-align: center;
+    animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
 }
+span {
+    opacity: 0;
+    animation: typing 0.2s linear 0.2s;
+  }
+  
+  @keyframes typing {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  
