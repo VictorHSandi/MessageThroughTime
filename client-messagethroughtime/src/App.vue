@@ -21,7 +21,6 @@ export default {
 <style>
 
 #app {
-  text-decoration-line: underline;
   text-align: center;
 }
 </style>
