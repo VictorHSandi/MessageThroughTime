@@ -48,8 +48,18 @@ export default {
     //this is for button
     handleClick() {
       console.log(this.messageValue);
-
-      //connect via websocket
+      //open websocket connection
+      const socket = new WebSocket("ws://api.messagethroughtime.tech");
+      socket.onopen = event => {
+        console.log("Websocket connection opened:", event);
+      }
+      //check for errors
+      socket.onerror = (error) => {
+        console.log("Websocket error:", error);
+      }
+      socket.onclose = event => {
+        console.log("Websocket connection closed:", event);
+      }
       axios({
         method: "get",
         url: "/pdf/generate",
