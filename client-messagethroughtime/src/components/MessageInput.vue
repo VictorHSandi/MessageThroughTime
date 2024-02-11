@@ -44,10 +44,9 @@ export default {
   methods: {
     //this is for the textarea
     handleInput(event) {
-      if(this.currentCharacters > this.maxCharacters) {
+      if (this.currentCharacters > this.maxCharacters) {
         console.log("Box is full!");
-      }
-      else {
+      } else {
         this.$emit("input", event.target.value);
         this.currentCharacters = this.messageValue.length;
       }
@@ -55,13 +54,11 @@ export default {
     //submit the thing and do the axios here
     //this is for button
     handleClick() {
-      console.log(this.messageValue);
-
       axios({
         method: "post",
         url: "/pdf/generate",
         data: {
-          message: this.message,
+          message: this.messageValue,
         },
       })
         .then((res) => {

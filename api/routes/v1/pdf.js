@@ -12,9 +12,7 @@ router.post("/generate", (req, res) => {
   const pdfGenerator = require("../../services/pdfgenerator");
   pdfGenerator.takeInput(message);
   setTimeout(() => {
-    res
-      .status(200)
-      .sendFile("./services/output.pdf", { root: __dirname + "/../../" });
+    res.status(200).sendFile("../../services/output.pdf");
   }, 2000);
 });
 
