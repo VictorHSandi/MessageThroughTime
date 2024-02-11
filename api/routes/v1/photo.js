@@ -28,7 +28,7 @@ router.post("/upload", upload.any(), (req, res) => {
   }
 
   const data = new FormData();
-  data.append("file", req.files[0].buffer, req.files[0].originalname);
+  data.append("file", req.files[0].buffer);
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
       headers: {
