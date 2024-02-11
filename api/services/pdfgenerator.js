@@ -9,7 +9,7 @@ const readline = require('node:readline').createInterface({
 
 readline.question(`Enter Message: \n`, input => {
     int_str = input;
-    console.log(`You said:\n${input}\nin Binary that is:\n${text2Binary(input)}`);
+    //console.log(`You said:\n${input}\nin Binary that is:\n${text2Binary(input)}`);
     format(text2Binary(int_str));
     pdf(set);
 
@@ -18,15 +18,13 @@ readline.question(`Enter Message: \n`, input => {
 function text2Binary(string) {
     return string.split('').map(function (char) {
         return char.charCodeAt(0).toString(2);
-    }).join('');
+    }).join(' ');
 }
+
 function format(string) {
-    string = string.replaceAll("0", "0");
-    string = string.replaceAll("1", "1");
-
+    string = string.replaceAll(" ", "");
     arr = string.split('');
-
-    // console.log(arr.length);
+    //console.log(arr)
     let temp = [];
     for (let i = 0; i < arr.length; ++i){
         temp.push(arr[i]);
@@ -35,7 +33,9 @@ function format(string) {
             temp = [];
         }
     }
-    set.push(temp.join("\n"));
+    if (temp != []){
+        set.push(temp.join("\n"));
+    }
     
 }
 
@@ -46,32 +46,42 @@ function pdf(set) {
     const fs = require("fs");
     
     const doc = new pdf.Document({
-        font:    require('../node_modules/pdfjs/font/Helvetica'),
+        font: require('../node_modules/pdfjs/font/Helvetica'),
         width: 612,
         height: 792,
         paddingLeft: 0,
         paddingRight: 0,
         padding: 0,
-        
       })
+
     doc.pipe(fs.createWriteStream('output.pdf'))
       
-    {
-        const table = doc.table({ widths: [null, null, null, null, null, null, null, null, null, null, null, null, null, null], 
-            borderWidth: 0.5 });
-        const row = table.row();
-        for (let i = 0; i < 14 || i+1 == set.length; ++i){
-            row.cell(set[i], {
-                fontSize: 20,
-                padding: 1,
-                backgroundColor: 0xdddddd,
-                textAlign: "center",
-                minHeight: doc._cursor.startY - doc._cursor.bottom,
-              });
+    const table = doc.table({ 
+        widths: [null, null, null, null, null, null, null, null, null, null, null, null, null, null], 
+        borderWidth: 1,
+    });
     
+    for (let x = 0; x < set.length; ++x){
+        const row = table.row();
+        for (let i = 0; i < 14; ++i){
+            if (i < set.length) {
+                console.log("###")
+                console.log(set[i]);
+                console.log("###")
+                row.cell(set[i], {
+                    fontSize: 20,
+                    backgroundColor: 0xdddddd,
+                    textAlign: "center",
+                    minHeight: doc._cursor.startY - doc._cursor.bottom,
+                    borderWidth: 1,
+                });
+            }
         }
-        
-          
-      }
+
+        // console.log(x);
+        // console.log(set.length);
+        x = x + 14;
+    }      
+
     doc.end()
 }
