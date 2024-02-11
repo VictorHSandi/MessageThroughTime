@@ -5,3 +5,4 @@ matplotlib
 opencv-python 
 opencv-python-headless
 gunicorn
+flask
