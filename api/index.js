@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv").config();
 const server = require("http").createServer(app);
 const bodyParser = require("body-parser");
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server: server });
+
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -29,6 +32,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/", require("./routes"));
 
-server.listen(3000, () => {
+server.listen(port, () => {
   console.log("Server listening on port 3000");
 });
