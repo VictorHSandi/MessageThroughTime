@@ -10,10 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Navigate to API folder
-        run: cd api
       - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "api-messagethroughtime" #Must be unique in Heroku
           heroku_email: "proesslet@gmail.com"
+          appdir: "api"a
