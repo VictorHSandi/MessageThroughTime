@@ -66,6 +66,7 @@ def hello_world():
 # Get the image from the user and process it
 @app.route("/process", methods=["POST"])
 def image_processor():
+    print(request.files)
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"})
 

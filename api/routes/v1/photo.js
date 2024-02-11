@@ -23,10 +23,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  // Make request to flask app on different server
+  if (!req.files[0]) {
+    return res.status(400).send("No files were uploaded.");
+  }
+
   const data = new FormData();
-  // Get the file from uploads folder
-  data.append("file", fs.createReadStream("uploads/esp32-cam.jpg"));
+  data.append("file", req.files[0].buffer, req.files[0].originalname);
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
       headers: {
