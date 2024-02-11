@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import json
+from flask import jsonify
 from PIL import Image
 import pytesseract
 import argparse
