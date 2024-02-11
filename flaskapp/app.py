@@ -67,4 +67,5 @@ def image_processing():
     file = request.files["file"]
     file.save("test1.jpg")
     process_image()
-    return "Image processed successfully"
+    # return 200 with message indicating success
+    return {"message": "Image processed successfully"}
