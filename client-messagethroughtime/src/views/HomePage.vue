@@ -1,21 +1,30 @@
 <template>
-  <canvas ref="canvas"></canvas>
+  
   <div class="container">
     <div class="WelcomeMessage">
-      <h1>Welcome to Message through time</h1>
+      <h1>Welcome to Message through Time</h1>
     </div>
 
     <div class="PageInfo">
-      <p>add like a lot of info here to fill page</p>
+      <p>Type a message and click "Generate" to print your encrypted message!</p>
     </div>
     <!-- for encrypting -->
     <div class="window">
-      <div class="content">
-        <div class="messagebox">
-          <MessageInput type="text" label="Encrypt"></MessageInput>
+      <div class="tab">Encrypt Message</div>
+        <div class="content">
+          <div class="messagebox">
+           <MessageInput type="text" label=""></MessageInput>
+          </div>
         </div>
+      </div>
+    
+      <br>
+     
+    <div class="window">
+      <div class="tab">Decrypt Message</div>
+      <div class="content">
         <div class="recieveMessage">
-          <MessageImport type="text" label="Decrypt Message"></MessageImport>
+          <MessageImport type="text" label=""></MessageImport>
         </div>
       </div>
       
@@ -76,21 +85,19 @@ export default {
   max-width: 90%; /* Limit the maximum width */
   margin: 0 auto; /* Center the container horizontally */
 }
+.tab {
+  background-color: green;
+  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  margin: 0;
+}
 .window {
   border: 2px solid green;
   border-radius: 5px;
-  width: 300px; /* Adjust width as needed */
+  width: auto; /* Adjust width as needed */
 }
-.canvas{
-  height: 100%;
-  left: 0;
-  mix-blend-mode: soft-light;
-  opacity: 0.25;
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100000;
+.content {
+  padding: 20px;
 }
 .WelcomeMessage {
   overflow: hidden;
