@@ -58,7 +58,6 @@ def process_image():
 
 @app.route("/")
 def hello_world():
-    process_image()
     return "Hello, World!"
 
 
