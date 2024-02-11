@@ -1,19 +1,35 @@
 <template>
+  
   <div class="container">
     <div class="WelcomeMessage">
-      <h1>Welcome to Message through time</h1>
+      <h1>Welcome to Message through Time</h1>
     </div>
 
     <div class="PageInfo">
-      <p>add like a lot of info here to fill page</p>
+      <p>Type a message and click "Generate" to print your encrypted message!</p>
     </div>
     <!-- for encrypting -->
-    <div class="messagebox">
-        <MessageInput type="text" label="Encrypt"></MessageInput>
+    <div class="window">
+      <div class="tab">Encrypt Message</div>
+        <div class="content">
+          <div class="messagebox">
+           <MessageInput type="text" label=""></MessageInput>
+          </div>
+        </div>
+      </div>
+    
+      <br>
+     
+    <div class="window">
+      <div class="tab">Decrypt Message</div>
+      <div class="content">
+        <div class="recieveMessage">
+          <MessageImport type="text" label=""></MessageImport>
+        </div>
+      </div>
+      
     </div>
-    <div class="recieveMessage">
-      <MessageImport type="text" label="Decrypt Message"></MessageImport>
-    </div>
+    
   </div>
 </template>
 
@@ -31,6 +47,30 @@ export default {
     return {
       inputValue: "" //data to bind to input
     }
+  },
+  methods: {
+    generateNoise() {
+      this.noise = document.createElement('canvas')
+      this.noise.height = window.innerHeight * 2
+      this.noise.width  = window.innerWidth * 2
+      let noiseContext = this.noise.getContext('2d')
+      let noiseData = noiseContext.createImageData(
+        this.noise.width,
+        this.noise.height
+      )
+      let buffer32 = new Uint32Array(noiseData.data.buffer)
+      let len = buffer32.length - 1
+      while (len--) {
+        buffer32[len] = Math.random() < 0.5 ? 0 : -1 >> 0
+      }
+      noiseContext.putImageData(noiseData, 0, 0)
+    },
+    moveNoise() {
+
+    },
+    mounted() {
+
+    }
   }
 };
 </script>
@@ -45,7 +85,20 @@ export default {
   max-width: 90%; /* Limit the maximum width */
   margin: 0 auto; /* Center the container horizontally */
 }
-
+.tab {
+  background-color: green;
+  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  margin: 0;
+}
+.window {
+  border: 2px solid green;
+  border-radius: 5px;
+  width: auto; /* Adjust width as needed */
+}
+.content {
+  padding: 20px;
+}
 .WelcomeMessage {
   overflow: hidden;
   white-space: nowrap;
