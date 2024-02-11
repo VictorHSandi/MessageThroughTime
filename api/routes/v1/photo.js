@@ -45,7 +45,7 @@ router.post("/upload", upload.any(), (req, res) => {
 });
 
 router.get("/preview", (req, res) => {
-  res.sendFile("uploads/esp32-cam.jpg", { root: __dirname + "/../../" });
+  res.sendFile("uploads/esp32-cam.jpg", { root: __dirname + "../../" });
 });
 
 module.exports = router;
