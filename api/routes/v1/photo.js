@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const axios = require("axios");
+const fs = require("fs");
 
 // Set up multer
 const storage = multer.diskStorage({
@@ -23,11 +24,9 @@ router.get("/", (req, res) => {
 
 router.post("/upload", upload.any(), (req, res) => {
   // Make request to flask app on different server
-  const axios = require("axios");
   const data = new FormData();
-  // Get the file from uploads
-  const file = "../../uploads/esp32-cam.jpg";
-  data.append("file", file);
+  // Get the file from uploads folder
+  data.append("file", fs.createReadStream("uploads/esp32-cam.jpg"));
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
       headers: {
