@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "https://*.netlify.app",
+    origin: "https://messagethroughtime.tech",
     credentials: true,
   })
 );
@@ -36,7 +36,6 @@ wss.on("connection", (ws) => {
 app.get("/", (req, res) => {
   res.send("Hello world!");
 });
-
 
 app.use("/api/", require("./routes"));
 
