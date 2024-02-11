@@ -46,7 +46,7 @@ function pdf(set) {
     const fs = require("fs");
     
     const doc = new pdf.Document({
-        font:    require('../node_modules/pdfjs/font/Times-Bold'),
+        font:    require('../node_modules/pdfjs/font/Helvetica'),
         width: 612,
         height: 792,
         paddingLeft: 0,
@@ -75,4 +75,3 @@ function pdf(set) {
       }
     doc.end()
 }
-
