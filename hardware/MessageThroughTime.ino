@@ -1,18 +1,19 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <WiFiClientSecure.h>
 #include <esp_camera.h>
 
 // Replace with your WiFi credentials
-const char* ssid = "MagicalKingdom";
-const char* password = "HackerMan13!";
+const char* ssid = "Preston";
+const char* password = "hackermode";
 
 // Replace with your server URL and API key (if needed)
-const char* server_url = "localhost:3000/api/v1/picture/upload";
-String serverName = "192.168.1.100";
+const char* server_url = "api.messagethroughtime.tech/api/v1/picture/upload";
+String serverName = "api.messagethroughtime.tech";
 String serverPath = "/api/v1/photo/upload";
-const int serverPort = 3000;
+const int serverPort = 443;
 
-WiFiClient client;
+WiFiClientSecure client;
 
 // CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
@@ -69,13 +70,16 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
+  config.grab_mode = CAMERA_GRAB_LATEST;
 
   // init with high specs to pre-allocate larger buffers
   if(psramFound()){
+    Serial.println("psram found!");
     config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 10;  //0-63 lower number means higher quality
+    config.jpeg_quality = 5;  //0-63 lower number means higher quality
     config.fb_count = 2;
   } else {
+    Serial.println("no psram found");
     config.frame_size = FRAMESIZE_CIF;
     config.jpeg_quality = 12;  //0-63 lower number means higher quality
     config.fb_count = 1;
@@ -119,6 +123,7 @@ String sendPhoto() {
   
   Serial.println("Connecting to server...");
 
+  client.setInsecure();
   if (client.connect(serverName.c_str(), serverPort)) {
     Serial.println("Connection successful!");    
     String head = "--RandomNerdTutorials\r\nContent-Disposition: form-data; name=\"imageFile\"; filename=\"esp32-cam.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n";
@@ -149,7 +154,6 @@ String sendPhoto() {
     }   
     client.print(tail);
     
-    free(fb->buf);
     esp_camera_fb_return(fb);
     
     int timoutTimer = 10000;
