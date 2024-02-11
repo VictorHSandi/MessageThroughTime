@@ -37,7 +37,18 @@ export default {
 </template>
 
 <script>
+import MessageInput from "@/components/MessageInput.vue";
+
 export default {
     name: "HomePage",
+    components: {
+        MessageInput
+    },
+    data() {
+        return {
+            inputValue: "" //data to bind to input
+        }
+    }
 };
 </script>
+
