@@ -13,7 +13,6 @@
           @input="handleInput"
           v-model="messageValue"
         />
-        
       </div>
       <p>Character limit: {{ currentCharacters }} / {{ maxCharacters }}</p>
     </div>
@@ -46,30 +45,18 @@ export default {
     //this is for the textarea
     handleInput(event) {
       this.$emit("input", event.target.value);
-      this.getCurrentLimit();
+      this.currentCharacters = this.messageValue.length;
     },
     //submit the thing and do the axios here
     //this is for button
     handleClick() {
       console.log(this.messageValue);
-      //open websocket connection
-      const socket = new WebSocket("ws://api.messagethroughtime.tech");
-      socket.onopen = event => {
-        console.log("Websocket connection opened:", event);
-      }
-      //check for errors
-      socket.onerror = (error) => {
-        console.log("Websocket error:", error);
-      }
-      socket.onclose = event => {
-        console.log("Websocket connection closed:", event);
-      }
-      //generate the PDF
+
       axios({
-        method: "get",
+        method: "post",
         url: "/pdf/generate",
         data: {
-          message: this.messageValue,
+          message: this.message,
         },
       })
         .then((res) => {
@@ -80,15 +67,13 @@ export default {
           console.log(err);
         });
     },
-    //CHARACTER LIMIT!!
-    checkCharacterLimit() {
-        if (this.message.length > this.maxCharacters) {
-            this.message = this.messageValue.substr(0, this.maxCharacters);
-        }
-    },
-    getCurrentLimit() {
-        this.currentCharacters = this.messageValue.length;
-    }
+
+    // CHARACTER LIMIT!!
+    // checkCharacterLimit() {
+    //     if (this.message.length > this.maxCharacters) {
+    //         this.message = this.message.substr(0, this.maxCharacters);
+    //     }
+    // },
   },
 };
 </script>

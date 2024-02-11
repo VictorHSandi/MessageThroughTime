@@ -49,7 +49,6 @@
       //this is for button
       handleClick() {
         console.log(this.messageValue);
-        console.log(this.messageValue);
       //open websocket connection
         const socket = new WebSocket("ws://api.messagethroughtime.tech");
         socket.onopen = event => {
