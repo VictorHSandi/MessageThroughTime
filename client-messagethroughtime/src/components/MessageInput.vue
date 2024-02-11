@@ -6,7 +6,7 @@
         </div>
         <div class="box">
             <div class="input">
-            <input :id="inputId" :type="type" :label="label" :name="name"
+            <textarea :id="inputId" :type="type" :label="label" :name="name"
                 @input="handleInput" />
             </div>  
         </div>
@@ -45,9 +45,10 @@ export default {
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   
 }
 .label {
-    
+    justify-content: left;
 }
 /* container for the terminal */
 .box {
@@ -61,13 +62,15 @@ export default {
     max-width: 100%;
 }
 /* text of the terminal */
-.input input {
+.input textarea {
     text-align: left;
+    font-size: 20px;
     background: transparent;
     border: none;
     outline: none;
     color: #01bd01;
     font-family: monospace;
     width: calc(100% - 25px);
+    height: 30vh;
 }
 </style>
