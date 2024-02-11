@@ -6,10 +6,13 @@
         </div>
         <div class="box">
             <div class="input">
-            <textarea :id="inputId" :type="type" :label="label" :name="name"
-                @input="handleInput" />
+            <textarea :id="inputId" :type="type" :label="label"
+                @input="handleInput" v-model="messageValue"/>
             </div>  
         </div>
+        <button class="rectangular-button" @click="handleClick">
+        Generate
+        </button>
     </div>
     
 </template>
@@ -18,7 +21,7 @@
 export default {
     name: 'MessageInput',
     props: {
-        value: String, //input value
+        value: String, 
         type: {
             type: String,
             default: "text"
@@ -29,22 +32,43 @@ export default {
     data() {
         return {
             inputId: `custom-input-${Math.random().toString(36).substr(2, 10)}`,
-            message: "",
-            maxCharacters: 68
+            messageValue: "",
+            maxCharacters: 68,
         };
     },
     methods: {
+        //this is for the textarea
         handleInput(event) {
             this.$emit("input", event.target.value);
+           
         },
-        updateText() {}
-        // put this in homepage
+        //submit the thing and do the axios here
+        //this is for button
+        handleClick(){
+            console.log(this.messageValue);
+
+            // axios({
+            //     method: "post",
+            //     url: "/", //TODO: find the url for axios
+            //     data: {
+            //         message: this.message,
+            //     },
+            // }).then((res) => {
+            //     console.log(res);
+            //     //TODO: make a message for success
+            // }).catch((err) => {
+            //     console.log(err);
+            //     //failed message?
+            // });
+        },
+    
+        // CHARACTER LIMIT!!
         // checkCharacterLimit() {
         //     if (this.message.length > this.maxCharacters) {
         //         this.message = this.message.substr(0, this.maxCharacters);
         //     }
         // },
-    }
+    },
 };
 </script>
 
@@ -82,4 +106,17 @@ export default {
     width: calc(100% - 25px);
     height: 30vh;
 }
+.rectangular-button {
+      background-color: #fffafa;
+      border: 'black';
+      color: rgb(0, 0, 0);
+      padding: 10px 25px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px; /* Adjust to change button corner radius */
+      font-family: "Audiowide", sans-serif;
+  }
 </style>
