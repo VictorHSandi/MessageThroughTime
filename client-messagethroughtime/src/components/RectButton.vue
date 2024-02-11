@@ -11,12 +11,17 @@
       buttonText: {
         type: String,
         default: 'Click me' // Default button text
+      },
+      eventName: {
+        type: String,
+        default: "custom-click"
       }
     },
     methods: {
       handleClick() {
         // Handle button click event here
-        console.log('Button clicked!');
+        console.log(this.eventName);
+        this.$emit(this.eventName);
       }
     }
   }

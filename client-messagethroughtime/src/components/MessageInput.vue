@@ -37,11 +37,13 @@ export default {
         handleInput(event) {
             this.$emit("input", event.target.value);
         },
-        checkCharacterLimit() {
-            if (this.message.length > this.maxCharacters) {
-                this.message = this.message.substr(0, this.maxCharacters);
-            }
-        },
+        updateText()
+        // put this in homepage
+        // checkCharacterLimit() {
+        //     if (this.message.length > this.maxCharacters) {
+        //         this.message = this.message.substr(0, this.maxCharacters);
+        //     }
+        // },
     }
 };
 </script>
