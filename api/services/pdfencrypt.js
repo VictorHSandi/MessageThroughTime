@@ -1,5 +1,8 @@
 var int_str = "";
 var set = [];
+const bcrypt = require("bcrypt")
+const saltRounds = 10
+var password = ""
 
 const readline = require('node:readline').createInterface({
     input: process.stdin,
@@ -9,9 +12,25 @@ const readline = require('node:readline').createInterface({
 
 readline.question(`Enter Message: \n`, input => {
     int_str = input;
-    console.log(`You said:\n${input}\nin Binary that is:\n${text2Binary(input)}`);
-    format(text2Binary(int_str));
-    pdf(set);
+    
+    //console.log(`You said:\n${input}\nin Binary that is:\n${text2Binary(input)}`);
+    password = text2Binary(int_str).replaceAll(" ", "");
+    bcrypt
+    .genSalt(saltRounds)
+    .then(salt => {
+        console.log('Salt: ', salt)
+        return bcrypt.hash(password, salt)
+    })
+    .then(hash => {
+        console.log('Hash: ', hash)
+        format(text2Binary(hash))
+        pdf(set);
+    })
+    .catch(err => console.error(err.message))
+
+
+    
+    
 
     readline.close();
   });
@@ -31,11 +50,12 @@ readline.question(`Enter Message: \n`, input => {
       
     return binaryResult.trim(); 
 } 
+
 function format(string) {
     string = string.replaceAll(" ", "");
+    // console.log(string)
     arr = string.split('');
-
-    // console.log(arr.length);
+    
     let temp = [];
     for (let i = 0; i < arr.length; ++i){
         temp.push(arr[i]);
@@ -44,7 +64,9 @@ function format(string) {
             temp = [];
         }
     }
-    set.push(temp.join("\n"));
+    if (temp != []){
+        set.push(temp.join("\n"));
+    }
     
 }
 
@@ -95,3 +117,4 @@ function pdf(set) {
 
     doc.end()
 }
+
