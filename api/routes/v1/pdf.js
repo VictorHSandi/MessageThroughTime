@@ -15,7 +15,7 @@ router.post("/generate", (req, res) => {
     res
       .status(200)
       .sendFile("output.pdf", { root: __dirname + "/../../services" });
-  }, 2000);
+  }, 4000);
 });
 
 module.exports = router;
