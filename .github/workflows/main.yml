@@ -15,4 +15,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "api-messagethroughtime" #Must be unique in Heroku
           heroku_email: "proesslet@gmail.com"
-          appdir: "api"a
+          appdir: "api"
