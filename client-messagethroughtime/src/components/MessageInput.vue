@@ -37,7 +37,7 @@ export default {
         handleInput(event) {
             this.$emit("input", event.target.value);
         },
-        updateText()
+        updateText() {}
         // put this in homepage
         // checkCharacterLimit() {
         //     if (this.message.length > this.maxCharacters) {
