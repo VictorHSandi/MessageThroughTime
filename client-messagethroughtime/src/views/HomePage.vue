@@ -7,20 +7,25 @@
     <div class="PageInfo">
       <p>add like a lot of info here to fill page</p>
     </div>
-
+    <!-- for encrypting -->
     <div class="messagebox">
         <MessageInput type="text" label="Encrypt"></MessageInput>
+    </div>
+    <div class="recieveMessage">
+      <MessageImport type="text" label="Decrypt Message"></MessageImport>
     </div>
   </div>
 </template>
 
 <script>
 import MessageInput from "@/components/MessageInput.vue";
+import MessageImport from "@/components/MessageImport.vue";
 
 export default {
   name: "HomePage",
   components: {
-    MessageInput
+    MessageInput,
+    MessageImport,
   },
   data() {
     return {
