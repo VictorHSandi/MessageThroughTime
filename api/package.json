@@ -4,11 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "dependencies": {
     "pdfjs": "^2.5.3"
+=======
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+>>>>>>> 72a9037d2c391d603e90885a17beedbbc076e783
   }
 }
