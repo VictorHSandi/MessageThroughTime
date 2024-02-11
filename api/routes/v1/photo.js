@@ -21,12 +21,18 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  // Once file is uploaded, call python script to process the image
-  const spawn = require("child_process").spawn;
-  const pythonProcess = spawn("python", ["./scripts/ImageProcessor.py"]);
-  pythonProcess.stdout.on("data", (data) => {
-    console.log(data.toString());
-  });
+  // Make request to flask app on different server
+  const axios = require("axios");
+  axios
+    .post("http://127.0.0.1:5000/process", {
+      file: "uploads/" + req.files[0].filename,
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   res.status(200).send("File uploaded");
 });
 
