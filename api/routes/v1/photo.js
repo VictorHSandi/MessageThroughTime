@@ -21,7 +21,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  console.log(req.body);
+  // Once file is uploaded, call python script to process the image
+  const spawn = require("child_process").spawn;
+  const pythonProcess = spawn("python", ["./scripts/ImageProcessor.py"]);
+  pythonProcess.stdout.on("data", (data) => {
+    console.log(data.toString());
+  });
   res.status(200).send("File uploaded");
 });
 
