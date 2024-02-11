@@ -8,14 +8,14 @@
       <p>add like a lot of info here to fill page</p>
     </div>
 
-    <div>
-      <MessageInput v-model="inputValue" type="text" label="Encrypt" />
+    <div class="messagebox">
+        <MessageInput type="text" label="Encrypt"></MessageInput>
     </div>
   </div>
 </template>
 
 <script>
-// import MessageInput from "@/components/MessageInput.vue";
+import MessageInput from "@/components/MessageInput.vue";
 
 export default {
   name: "HomePage",
