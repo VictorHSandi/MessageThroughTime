@@ -23,12 +23,15 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  if (!req.files[0]) {
+  // Check if a file was uploaded
+  if (!req.files) {
     return res.status(400).send("No files were uploaded.");
   }
 
+  // Send the file to the Flask server
+
   const data = new FormData();
-  data.append("file", req.files[0].buffer);
+  data.append("file", req.files[0].data);
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
       headers: {
