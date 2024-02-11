@@ -24,16 +24,21 @@ router.get("/", (req, res) => {
 router.post("/upload", upload.any(), (req, res) => {
   // Make request to flask app on different server
   const axios = require("axios");
+  const data = new FormData();
+  data.append("file", req.files[0]);
   axios
-    .post("https://flask.messagethroughtime.tech/process", {
-      file: "../../uploads/esp32-cam.jpg",
+    .post("https://flask.messagethroughtime.tech/process", data, {
+      headers: {
+        "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
+      },
     })
     .then((response) => {
       console.log(response.data);
     })
     .catch((error) => {
-      console.error(error);
+      console.log(error);
     });
+
   res.status(200).send("File uploaded");
 });
 

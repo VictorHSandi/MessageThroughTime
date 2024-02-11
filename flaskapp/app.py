@@ -69,8 +69,4 @@ def image_processing():
     file.save("test1.jpg")
     process_image()
     # return 200 with message indicating success
-    data = {"message": "Image processed successfully"}
-    response = app.response_class(
-        response=json.dumps(data), status=200, mimetype="application/json"
-    )
-    return response
+    return {"message": "Image processed successfully"}
