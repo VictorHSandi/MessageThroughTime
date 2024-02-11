@@ -12,6 +12,7 @@
             :label="label"
             @input="handleInput"
             v-model="messageValue"
+            disabled
           />
         </div>
       </div>
@@ -48,10 +49,10 @@
       //this is for button
       handleClick() {
         console.log(this.messageValue);
-  
+        //connect via axios
         axios({
-          method: "post",
-          url: "/pdf/generate",
+          method: "get",
+          url: "",
           data: {
             message: this.message,
           },
