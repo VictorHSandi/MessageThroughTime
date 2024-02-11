@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import MessageInput from "@/components/MessageInput.vue";
+// import MessageInput from "@/components/MessageInput.vue";
 
 export default {
   name: "HomePage",
