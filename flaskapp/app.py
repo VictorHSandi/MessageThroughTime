@@ -63,10 +63,12 @@ def hello_world():
 
 
 # Get the image from the user and process it
-@app.post("/process")
-def image_processing():
+@app.route("/image", methods=["POST"])
+def image_processor():
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"})
+
     file = request.files["file"]
     file.save("test1.jpg")
     process_image()
-    # return 200 with message indicating success
-    return {"message": "Image processed successfully"}
+    return jsonify({"success": "File uploaded"}), 200
