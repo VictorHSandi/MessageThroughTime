@@ -23,12 +23,10 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  // Get file from uploads folder
-  const file = fs.createReadStream("uploads/esp32-cam.jpg");
-
   // Create form data
+  console.log(req.files[0]);
   const data = new FormData();
-  data.append("file", file);
+  data.append("file", req.files[0].data);
 
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
