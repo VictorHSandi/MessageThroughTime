@@ -75,7 +75,7 @@ function pdf(set) {
     padding: 0,
   });
 
-  doc.pipe(fs.createWriteStream("./services/output.pdf", { flags: "a" }));
+  doc.pipe(fs.createWriteStream("output.pdf"));
 
   const table = doc.table({
     widths: [
@@ -94,7 +94,7 @@ function pdf(set) {
       null,
       null,
     ],
-    borderWidth: 1,
+    
   });
 
   for (let x = 0; x < set.length; ++x) {
@@ -107,10 +107,10 @@ function pdf(set) {
         // console.log("###")
         row.cell(set[i], {
           fontSize: 19,
-          backgroundColor: 0xdddddd,
+          backgroundColor: 0xffffff,
           textAlign: "center",
           minHeight: doc._cursor.startY - doc._cursor.bottom,
-          borderWidth: 1,
+          
         });
       }
     }
