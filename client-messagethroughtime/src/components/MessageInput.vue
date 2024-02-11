@@ -44,8 +44,13 @@ export default {
   methods: {
     //this is for the textarea
     handleInput(event) {
-      this.$emit("input", event.target.value);
-      this.currentCharacters = this.messageValue.length;
+      if(this.currentCharacters > this.maxCharacters) {
+        console.log("Box is full!");
+      }
+      else {
+        this.$emit("input", event.target.value);
+        this.currentCharacters = this.messageValue.length;
+      }
     },
     //submit the thing and do the axios here
     //this is for button
