@@ -66,9 +66,7 @@ def hello_world():
 # Get the image from the user and process it
 @app.route("/process", methods=["POST"])
 def image_processor():
-    print(request.files["esp32-cam.jpg"])
-
     file = request.files["file"]
     file.save("test1.jpg")
     process_image()
-    return jsonify({"success": "File uploaded"}), 200
+    return jsonify({"result": "success"})
