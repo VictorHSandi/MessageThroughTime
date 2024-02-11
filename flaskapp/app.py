@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import json
 from PIL import Image
 import pytesseract
 import argparse
@@ -68,4 +69,8 @@ def image_processing():
     file.save("test1.jpg")
     process_image()
     # return 200 with message indicating success
-    return {"message": "Image processed successfully"}
+    data = {"message": "Image processed successfully"}
+    response = app.response_class(
+        response=json.dumps(data), status=200, mimetype="application/json"
+    )
+    return response
