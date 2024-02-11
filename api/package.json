@@ -17,6 +17,8 @@
     "nodemon": "^3.0.3"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "multer": "^1.4.5-lts.1",
     "ws": "^8.16.0"
 >>>>>>> 72a9037d2c391d603e90885a17beedbbc076e783
   }

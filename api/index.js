@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
+const bodyParser = require("body-parser");
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server: server });
+
+app.use(bodyParser.json());
 
 wss.on("connection", (ws) => {
   console.log("Client connected");
