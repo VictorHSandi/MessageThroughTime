@@ -29,12 +29,19 @@ export default {
     data() {
         return {
             inputId: `custom-input-${Math.random().toString(36).substr(2, 10)}`,
+            message: "",
+            maxCharacters: 68
         };
     },
     methods: {
         handleInput(event) {
             this.$emit("input", event.target.value);
-        }
+        },
+        checkCharacterLimit() {
+            if (this.message.length > this.maxCharacters) {
+                this.message = this.message.substr(0, this.maxCharacters);
+            }
+        },
     }
 };
 </script>
