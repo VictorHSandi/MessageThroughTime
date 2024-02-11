@@ -13,7 +13,9 @@
           @input="handleInput"
           v-model="messageValue"
         />
+        
       </div>
+      <p>Character limit: {{ currentCharacters }} / {{ maxCharacters }}</p>
     </div>
     <button class="rectangular-button" @click="handleClick">Generate</button>
   </div>
@@ -37,12 +39,14 @@ export default {
       inputId: `custom-input-${Math.random().toString(36).substr(2, 10)}`,
       messageValue: "",
       maxCharacters: 68,
+      currentCharacters: 0,
     };
   },
   methods: {
     //this is for the textarea
     handleInput(event) {
       this.$emit("input", event.target.value);
+      this.getCurrentLimit();
     },
     //submit the thing and do the axios here
     //this is for button
@@ -60,11 +64,12 @@ export default {
       socket.onclose = event => {
         console.log("Websocket connection closed:", event);
       }
+      //generate the PDF
       axios({
         method: "get",
         url: "/pdf/generate",
         data: {
-          message: this.message,
+          message: this.messageValue,
         },
       })
         .then((res) => {
@@ -78,9 +83,12 @@ export default {
     //CHARACTER LIMIT!!
     checkCharacterLimit() {
         if (this.message.length > this.maxCharacters) {
-            this.message = this.message.substr(0, this.maxCharacters);
+            this.message = this.messageValue.substr(0, this.maxCharacters);
         }
     },
+    getCurrentLimit() {
+        this.currentCharacters = this.messageValue.length;
+    }
   },
 };
 </script>

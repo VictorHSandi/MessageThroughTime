@@ -1,6 +1,10 @@
 <template>
-  
+  <!-- <div>
+    <StaticEffect />
+  </div>
+   -->
   <div class="container">
+    
     <div class="WelcomeMessage">
       <h1>Welcome to Message through Time</h1>
     </div>
@@ -31,17 +35,20 @@
     </div>
     
   </div>
+  <StaticEffect/>
 </template>
 
 <script>
 import MessageInput from "@/components/MessageInput.vue";
 import MessageImport from "@/components/MessageImport.vue";
+import StaticEffect from '@/components/StaticEffect.vue';
 
 export default {
   name: "HomePage",
   components: {
     MessageInput,
     MessageImport,
+    StaticEffect,
   },
   data() {
     return {

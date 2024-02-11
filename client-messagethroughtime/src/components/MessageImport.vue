@@ -49,6 +49,19 @@
       //this is for button
       handleClick() {
         console.log(this.messageValue);
+        console.log(this.messageValue);
+      //open websocket connection
+        const socket = new WebSocket("ws://api.messagethroughtime.tech");
+        socket.onopen = event => {
+            console.log("Websocket connection opened:", event);
+        }
+        //check for errors
+        socket.onerror = (error) => {
+            console.log("Websocket error:", error);
+        }
+        socket.onclose = event => {
+            console.log("Websocket connection closed:", event);
+        }
         //connect via axios
         axios({
           method: "get",
