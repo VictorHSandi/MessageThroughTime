@@ -75,13 +75,12 @@ export default {
           console.log(err);
         });
     },
-
-    // CHARACTER LIMIT!!
-    // checkCharacterLimit() {
-    //     if (this.message.length > this.maxCharacters) {
-    //         this.message = this.message.substr(0, this.maxCharacters);
-    //     }
-    // },
+    //CHARACTER LIMIT!!
+    checkCharacterLimit() {
+        if (this.message.length > this.maxCharacters) {
+            this.message = this.message.substr(0, this.maxCharacters);
+        }
+    },
   },
 };
 </script>
