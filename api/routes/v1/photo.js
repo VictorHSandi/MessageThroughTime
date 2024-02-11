@@ -25,7 +25,7 @@ router.post("/upload", upload.any(), (req, res) => {
   // Make request to flask app on different server
   const axios = require("axios");
   axios
-    .post("https://flask.messagethroughtime.tech", {
+    .post("https://flask.messagethroughtime.tech/process", {
       file: "../../uploads/esp32-cam.jpg",
     })
     .then((response) => {
