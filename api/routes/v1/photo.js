@@ -23,15 +23,13 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", upload.any(), (req, res) => {
-  // Check if a file was uploaded
-  if (!req.files) {
-    return res.status(400).send("No files were uploaded.");
-  }
+  // Get file from uploads folder
+  const file = fs.createReadStream("uploads/esp32-cam.jpg");
 
-  // Send the file to the Flask server
-
+  // Create form data
   const data = new FormData();
-  data.append("file", req.files[0].data);
+  data.append("file", file);
+
   axios
     .post("https://flask.messagethroughtime.tech/process", data, {
       headers: {
